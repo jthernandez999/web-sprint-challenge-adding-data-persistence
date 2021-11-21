@@ -18,6 +18,12 @@ function projectToBody(project) {
         ...project, 
         project_completed: intToBoolean(project.project_completed),
     }
+    if (project.tasks) {
+        result.tasks = project.tasks.map(task => ({
+            ...task, 
+            task_completed: intToBoolean(task.task_completed),
+        }))
+    }
     return result
 }
 

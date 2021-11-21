@@ -1,6 +1,7 @@
 // build your `/api/tasks` router here
 const router = require('express').Router()
 const Task = require('./model')
+const Mappers = require('../../data/helpers/mappers')
 
 router.get('/', (req, res, next) => {
     Task.get()
@@ -14,7 +15,10 @@ router.post('/', (req, res, next) => {
     const newTask = req.body
     Task.insert(newTask)
         .then(newTask => {
-            res.status(201).json(newTask)
+            res.status(201).json({
+                ...newTask,
+                task_completed: Mappers.intToBoolean(newTask.task_completed)
+            })
         })
         .catch(next)
 })
