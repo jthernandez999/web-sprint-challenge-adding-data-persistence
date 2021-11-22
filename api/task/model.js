@@ -5,6 +5,8 @@ const mappers = require('../../data/helpers/mappers')
 
 function get(task_id) {
     let query = db('tasks') 
+    // .leftJoin('projects as p')
+    // .select('tasks.*', 'p.project_name', 'project_description')
     if(task_id) {
         return query 
             .where('task_id', task_id)

@@ -24,6 +24,7 @@ exports.up = async function (knex) {
                 .inTable('projects')
                 .onDelete('RESTRICT')
                 .onUpdate('RESTRICT')
+        
         })
         .createTable('project_resources', table => {
             table.increments('project_resource_id')
